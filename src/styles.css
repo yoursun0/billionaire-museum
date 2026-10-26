@@ -1,0 +1,112 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Noto Sans TC", "PingFang HK", "Noto Sans CJK TC", sans-serif;
+  --font-serif: "Noto Serif TC", "Songti TC", "PMingLiU", serif;
+
+  --color-hall: #1c1612;
+  --color-hall-raised: #2a221c;
+  --color-parchment: #f4ead6;
+  --color-parchment-deep: #e6d3b0;
+  --color-ink: #241c16;
+  --color-ink-soft: #5e4e40;
+  --color-cream: #f7f0e4;
+  --color-cream-dim: #cbbba6;
+  --color-gold: #c8963e;
+  --color-gold-soft: #e6c98a;
+  --color-cinnabar: #c44536;
+  --color-line: #3d322a;
+
+  --radius-case: 1.5rem;
+}
+
+@layer base {
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    background: var(--color-hall);
+    color: var(--color-cream);
+    font-family: var(--font-sans);
+    line-height: 1.6;
+  }
+
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-serif);
+    text-wrap: balance;
+    line-height: 1.25;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  button:not(:disabled),
+  [role="button"]:not(:disabled) {
+    cursor: pointer;
+  }
+
+  input[type="range"] {
+    accent-color: var(--color-gold);
+    inline-size: 100%;
+    block-size: 1.75rem;
+  }
+}
+
+@layer components {
+  .tap {
+    transition: scale 150ms ease-out;
+  }
+
+  .tap:active:not(:disabled) {
+    scale: 0.96;
+  }
+
+  .rise {
+    animation: rise 560ms ease-out both;
+  }
+
+  .rise-2 {
+    animation-delay: 90ms;
+  }
+
+  .rise-3 {
+    animation-delay: 180ms;
+  }
+
+  .floaty {
+    animation: floaty 4.5s ease-in-out infinite;
+  }
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+    filter: blur(4px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+    filter: none;
+  }
+}
+
+@keyframes floaty {
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rise,
+  .rise-2,
+  .rise-3,
+  .floaty {
+    animation: none;
+  }
+}

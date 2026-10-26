@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" role="img" aria-label="千年金庫">
+  <rect width="32" height="32" rx="7" fill="#1C1612"/>
+  <path d="M16 3.6 18.4 7.2h-4.8Z" fill="#C44536"/>
+  <rect x="12.4" y="7" width="7.2" height="2.2" rx="0.7" fill="#C8963E"/>
+  <rect x="7.5" y="10" width="17" height="16.2" rx="3.4" fill="#C8963E"/>
+  <rect x="10.4" y="12.6" width="11.2" height="11" rx="1.8" fill="#F4EAD6"/>
+  <circle cx="16" cy="18" r="2.5" fill="#C44536"/>
+</svg>
