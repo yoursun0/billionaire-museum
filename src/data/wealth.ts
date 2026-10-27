@@ -97,7 +97,7 @@ export const TYCOONS: Tycoon[] = [
     facts: [
       "《末日審判書》個名叫人驚，因為調查嚴到好似末日審判。",
       "佢自己大概控制英格蘭錄到嘅土地價值兩成左右。",
-      "1026 年佢仲未出世。館由呢一年開場，係為咗講『有世界，未有個人榜』。",
+      "1026 年佢仲未出世。館用朱羅海貿做估算開場，威廉先係第一個有土地清冊嘅人。",
     ],
     flow: "王位同土地傳俾仔。錢冇變做圖書館，而係留喺王冠入面。",
     voice: "有本書記低田地，先可以講數字。冇書，我哋就留白。",
@@ -316,12 +316,12 @@ export const TYCOONS: Tycoon[] = [
     blurb: "標準石油最勁時，美國大約九成煉油經過佢。",
     story: [
       "洛克菲勒將煉油、運油、賣油砌成標準石油。最勁嘅時候，美國大約九成煉油同佢有關。1911 年最高法院認為呢個壟斷要拆開。",
-      "拆開之後，佢持有嘅股份喺新公司入面繼續增值。用『佔當時經濟幾大』嚟睇，佢好可能係現代有帳簿以嚟最勁嘅私人富豪。晚年大量錢進入基金會，做醫學同教育。",
+      "拆開之後，佢持有嘅股份喺新公司入面繼續增值。用『佔當時美國經濟幾大』嚟睇，佢好可能係有帳簿以嚟最勁嘅美國人之一。放到全球產出入面，就要同後來嘅馬斯克再比一次。晚年大量錢進入基金會，做醫學同教育。",
     ],
     facts: [
       "1913 年名義身家大約 9 億美元。",
       "標準石油被拆成幾間公司，後尾有啲變成今日都聽過嘅能源公司。",
-      "只計通脹，會覺得佢『冇今日首富咁有錢』；計佔經濟比例，結論相反。",
+      "只計通脹，會覺得佢細過今日首富；計佔全球產出，佢仍然貼近頂端，但排名會跟你用邊一年、邊種估法。",
     ],
     flow: "反壟斷將一間公司拆開，財富變成分散嘅股份。基金會再將一大截帶走。",
     voice: "同一筆錢，兩把尺，兩個故事。記住帶尺。",
@@ -353,6 +353,286 @@ export const TYCOONS: Tycoon[] = [
     ],
     flow: "一部份藝術品變成公共博物館。石油資產跟公司同市場走。",
     voice: "見到條線突然矮，唔好驚。先睇清楚把尺。",
+  },
+  {
+    id: "rajendra",
+    nameZh: "拉真德拉一世",
+    nameEn: "Rajendra Chola I",
+    life: "約 971–1044",
+    region: "朱羅王朝，南印度",
+    how: "海貿、田賦、戰利品",
+    scene: "/museum/chola.jpg",
+    focus: "50% 45%",
+    confidence: "estimate",
+    hold: { from: 1014, to: 1044 },
+    peakYear: 1030,
+    wealth: { low: 40, mid: 120, high: 280 },
+    method:
+      "1026 年左右佢已經在位。艦隊同商船去到東南亞港口，寺廟金庫收田賦同戰利品。冇個人資產負債表。呢個中位係教學估算，用嚟填原本空白嘅開館年份。",
+    blurb: "1026 年嘅海上強國。船同寺廟金庫，先至係呢格櫃嘅主角。",
+    story: [
+      "館由 1026 年開場。嗰陣宋朝開封好繁華，但皇帝同國庫分不開，所以第一個上台嘅估算，係南印度朱羅王朝嘅拉真德拉。佢嘅船隊沿海岸同海峽做貿易，亦打過仗，將戰利品送返寺廟同王庫。",
+      "我哋仍然分唔開『王國嘅錢』同『國王袋入面嘅錢』。所以印章係估算。以前呢段係空白走廊，而家用一個有地名、有貿易路線嘅人填上，同時話你知數字唔係收據。",
+    ],
+    facts: [
+      "在位大約 1014 到 1044 年。",
+      "朱羅嘅船將香料、珍珠同布運過印度洋。",
+      "1026 年係佢在位中段，唔係威廉出世嗰年。",
+    ],
+    flow: "寺廟同王庫留低石刻同塔。人一走，金庫就變返成個王朝嘅歷史，唔係一份遺囑。",
+    voice: "開館唔再望住空牆。但係呢格櫃我仍然會大聲講：估算。",
+  },
+  {
+    id: "manuel",
+    nameZh: "曼努埃爾一世",
+    nameEn: "Manuel I Komnenos",
+    life: "1118–1180",
+    region: "君士坦丁堡",
+    how: "關稅、絲綢、宮廷",
+    scene: "/museum/byzantine.jpg",
+    focus: "50% 40%",
+    confidence: "estimate",
+    hold: { from: 1143, to: 1180 },
+    peakYear: 1160,
+    wealth: { low: 30, mid: 80, high: 200 },
+    method:
+      "十二世紀拜占庭仲係歐亞之間嘅關稅站。宮廷好富，但國庫同皇帝分不開，帝國亦已經細過以前。中位刻意保守。",
+    blurb: "絲綢同關稅經過金角灣。富係真，私人存款就唔係一本帳。",
+    story: [
+      "威廉之後、成吉思汗之前，歐洲同西亞並唔係冇富人。曼努埃爾一世喺君士坦丁堡做皇帝，商船經過就要交稅，絲綢同香料喺港口轉手。",
+      "宮廷宴會好誇張，所以容易以為佢富可敵全球。當時宋朝同伊斯蘭世界嘅經濟大好多。我哋俾一個偏低嘅教學數字，提醒『宮殿耀眼』唔等於『佔全世界好大份』。",
+    ],
+    facts: [
+      "在位 1143 到 1180 年。",
+      "君士坦丁堡係跨洲貿易嘅閘口。",
+      "數字偏低，係故意嘅。",
+    ],
+    flow: "稅收留喺帝國。幾十年後第四次十字軍將城搶過，宮廷財富散入別人手上。",
+    voice: "金馬賽克好耀眼。耀眼唔係一把尺。",
+  },
+  {
+    id: "kublai",
+    nameZh: "忽必烈",
+    nameEn: "Kublai Khan",
+    life: "1215–1294",
+    region: "元大都",
+    how: "稅收、絲路、紙鈔",
+    scene: "/museum/yuan.jpg",
+    focus: "48% 42%",
+    confidence: "estimate",
+    hold: { from: 1260, to: 1294 },
+    peakYear: 1290,
+    wealth: { low: 80, mid: 240, high: 600 },
+    method:
+      "元朝控制當時全球產出好大一塊，又發行紙鈔。皇帝可動用嘅稅收好巨大，但唔等於私人銀行戶口。中位係『可動用稅收』嘅教學讀數，另有一條國力佔比，唔好混埋。",
+    blurb: "紙鈔、運河同絲路都經過大都。國力好大，口袋就另一回事。",
+    story: [
+      "成吉思汗打出一個大帝國，佢孫忽必烈將重心搬到中原，建元大都，開通運河，沿絲路收稅。馬可·波羅嘅遊記將宮廷寫到閃閃發光。遊記當故事聽，稅收系統就係真的。",
+      "中國嗰陣佔世界經濟好大份。如果有人將成個國家當成佢私人存款，數字會荒唐。呢度分開兩條：一條係個人或宮廷可動用財富嘅估算，一條係國家佔全球產出。第二條大好多，而且唔屬於一個人。",
+    ],
+    facts: [
+      "1260 年稱汗，1271 年建元朝。",
+      "紙鈔通行，係一種全國性嘅金錢實驗。",
+      "國力佔比同身家佔比，展廳會分兩條柱。",
+    ],
+    flow: "帝國同紙鈔制度留俾後代皇帝。個人清單冇留低。",
+    voice: "國家好大，唔好順手將個國家寫進佢存摺。",
+  },
+  {
+    id: "shen",
+    nameZh: "沈萬三",
+    nameEn: "Shen Wansan",
+    life: "元末明初，生卒傳說多",
+    region: "蘇州",
+    how: "貿易同田產",
+    scene: "/museum/suzhou.jpg",
+    focus: "50% 55%",
+    confidence: "legend",
+    hold: { from: 1360, to: 1394 },
+    peakYear: 1375,
+    wealth: { low: 8, mid: 36, high: 150 },
+    method:
+      "民間話佢富可敵國，正史細節唔齊。我哋用一個偏低區間填元末明初嘅空白，印章係『要小心』。重點係財富可以被抄走。",
+    blurb: "蘇州傳說中的首富。故事的高潮，係錢可以一夕被抄。",
+    story: [
+      "沈萬三係蘇州一帶嘅商人傳說：船、田、舖，富到明太祖起南京城都有故事話佢出錢。邊啲係真捐獻，邊啲係說書人加鹽，歷史學家到今日都爭。",
+      "結局喺教學上好清楚。新王朝唔放心太有錢又唔受控嘅人，家產被抄，人被流放。所以呢格櫃唔係為咗證明佢係世界第一，而係填一段空白，同時記住：冇制度保護，紙上巨富可以變零。",
+    ],
+    facts: [
+      "事蹟混雜傳說，生卒年都唔穩。",
+      "『富可敵國』四個字，往往係誇張。",
+      "抄家，就係呢條線嘅結局。",
+    ],
+    flow: "家產充公，人被流放。錢由私人故事變返成國家權力嘅示範。",
+    voice: "我寧願展一個結局悽慘、數字含糊嘅人，都唔好再留一面空牆。",
+  },
+  {
+    id: "medici",
+    nameZh: "科西莫·德·美第奇",
+    nameEn: "Cosimo de' Medici",
+    life: "1389–1464",
+    region: "佛羅倫斯",
+    how: "銀行同羊毛",
+    scene: "/museum/florence.jpg",
+    focus: "62% 48%",
+    confidence: "records",
+    hold: { from: 1434, to: 1464 },
+    peakYear: 1457,
+    wealth: { low: 25, mid: 70, high: 160 },
+    method:
+      "美第奇銀行有分行帳、有信。佢係城邦銀行家，唔係皇帝。折成今日仍然係估算，但信心高過純傳說。高峰用佢實際掌政晩年。",
+    blurb: "羊毛同分行帳簿，砌出一個城邦最有錢的銀行家。",
+    story: [
+      "科西莫唔使加冕。佢嘅家族做羊毛同銀行，分行去到羅馬同其他城市，借錢俾教皇同王公。1434 年之後，佢實際上主導佛羅倫斯，頭銜仍然係市民。",
+      "帳簿令呢格櫃穩陣過沈萬三。但一間家族銀行會擴張，亦會喺後代手上出事。錢嘅故事唔停喺『好有錢』，而係停喺『邊個信你、邊個欠你』。",
+    ],
+    facts: [
+      "1389 年出世，1464 年過身。",
+      "銀行分行係佢哋嘅秘密武器。",
+      "後代出過教皇同托斯卡納大公，中間亦有破產危機。",
+    ],
+    flow: "一部分變成禮拜堂同藝術委託，一部分留喺銀行。家族名聲比某一本帳留得更長。",
+    voice: "有信、有分行、有羊毛。呢種富豪我數得落手。",
+  },
+  {
+    id: "atahualpa",
+    nameZh: "阿塔瓦爾帕",
+    nameEn: "Atahualpa",
+    life: "約 1502–1533",
+    region: "印加帝國",
+    how: "一筆黃金贖金",
+    scene: "/museum/inca.jpg",
+    focus: "50% 60%",
+    confidence: "estimate",
+    hold: { from: 1532, to: 1533 },
+    peakYear: 1532,
+    wealth: { low: 4, mid: 22, high: 80 },
+    method:
+      "1532 年一間石室裝滿黃金同白銀做贖金。呢個係一筆支付，唔係一生資產。折算範圍好闊，因為金銀重量同購買力都有爭議。",
+    blurb: "一個房間的黃金，係贖金，唔係存摺。而且佢冇留住。",
+    story: [
+      "阿塔瓦爾帕係印加帝國內戰之後嘅統治者。西班牙人捉住佢，佢承諾用黃金填滿一間房、白銀填滿另一間，換自己自由。金屬運到，人仍然被處死。",
+      "所以高峰只有 1532 前後。將『一個房間』講成『人類史上最有錢』會跳步：呢筆係帝國攞得出嘅戰時支付，唔係佢個人嘅長期身家，最後亦唔屬於佢。",
+    ],
+    facts: [
+      "贖金發生喺 1532 到 1533 年。",
+      "黃金去咗西班牙人手上，再流入歐洲。",
+      "一筆流量，唔好畫成一條好長嘅存量。",
+    ],
+    flow: "人被處死。金屬去歐洲，變成別人嘅錢同通脹。",
+    voice: "房入面滿到天花板，都唔代表個主人帶得走。",
+  },
+  {
+    id: "aurangzeb",
+    nameZh: "奧朗則布",
+    nameEn: "Aurangzeb",
+    life: "1618–1707",
+    region: "蒙兀兒帝國",
+    how: "帝國田賦",
+    scene: "/museum/mughal.jpg",
+    focus: "30% 40%",
+    confidence: "estimate",
+    hold: { from: 1658, to: 1707 },
+    peakYear: 1690,
+    wealth: { low: 100, mid: 260, high: 700 },
+    method:
+      "蒙兀兒喺佢在位時，帝國產出大約佔全世界兩成上下。田賦機器好厲害。個人可動用財富用一個遠低於『成個帝國』嘅教學佔比，國力另計。",
+    blurb: "帝國好大，稅簿好厚。個人身家只准佔其中一截。",
+    story: [
+      "阿克巴打好基礎，奧朗則布將帝國推向領土最廣嘅一段。田賦、紡織同貿易令印度成為當時世界經濟的重心之一。呢份『大』首先係國力。",
+      "如果將兩成全球產出寫成佢私人淨值，就係教學事故。展櫃用一條矮啲嘅個人估算，再喺『全球占比』展廳用空心柱顯示成個帝國。兩條都要睇，先唔好被人用一條柱嚇到。",
+    ],
+    facts: [
+      "在位 1658 到 1707 年。",
+      "帝國佔全球產出嘅估算，遠高過個人身家估算。",
+      "佢死後帝國慢慢裂開，稅基亦散。",
+    ],
+    flow: "國庫同王位一齊傳。個人遺囑解釋唔到成個經濟體。",
+    voice: "空心嗰條柱先係國家。實心嗰條先准叫身家。",
+  },
+  {
+    id: "qianlong",
+    nameZh: "乾隆皇帝",
+    nameEn: "Qianlong Emperor",
+    life: "1711–1799",
+    region: "清帝國",
+    how: "田賦同皇家工坊",
+    scene: "/museum/qing.jpg",
+    focus: "50% 40%",
+    confidence: "estimate",
+    hold: { from: 1735, to: 1796 },
+    peakYear: 1785,
+    wealth: { low: 90, mid: 240, high: 800 },
+    method:
+      "十八世紀中國大約佔全球產出三成左右，呢個係國力，唔係私產。乾隆可動用內務府同國庫，教學上只取一個低好多嘅個人讀數，並另列國力。",
+    blurb: "瓷器、絲綢同遠征都好貴。三成全球產出係國家，唔係皇帝存摺。",
+    story: [
+      "乾隆在位六十年，清帝國人口同田賦都去到一個高峰。景德鎮嘅瓷器、江南織造、宮廷收藏，容易俾人寫成『最有錢的人』。",
+      "麥迪森一類嘅長期估算話，十九世紀初中國經濟大約係全世界三成。呢個數字好震撼，亦最易被濫用。三成係農夫、工匠、商人一齊做出嚟嘅產出。皇帝可以抽稅、可以打仗、可以收藏，但抽得到嘅係一截，唔係全部。",
+    ],
+    facts: [
+      "1735 到 1796 年在位，之後又做太上皇。",
+      "國力佔比用大約三成做教學讀數。",
+      "個人估算故意遠低過國力。",
+    ],
+    flow: "內務府同國庫留喺王朝。唔會變成一份可以上市嘅私人股權。",
+    voice: "見到三成，先問：三成邊個嘅？",
+  },
+  {
+    id: "howqua",
+    nameZh: "伍秉鑑",
+    nameEn: "Howqua",
+    life: "1769–1843",
+    region: "廣州",
+    how: "行商、茶葉、外貿",
+    scene: "/museum/canton.jpg",
+    focus: "50% 48%",
+    confidence: "records",
+    hold: { from: 1830, to: 1843 },
+    peakYear: 1834,
+    wealth: { low: 1, mid: 22, high: 70 },
+    method:
+      "行商伍秉鑑喺 1830 年代被同代人估過大約二千六百萬銀元。只計物價，折到今日只係十億美元以下呢個量級，所以低估計好低。中位先用『佔當時經濟』嘅教學感覺稍為抬高。佢係商人，有同代記載，唔係皇帝傳說。",
+    blurb: "廣州十三行的茶葉商人。同代人已經叫佢世界級有錢。",
+    story: [
+      "伍秉鑑係廣州十三行嘅怡和行商，外號 Howqua。茶葉、絲綢同瓷器經珠江運上外國船。美國商人寫低佢極之有錢，有人話佢係當時世界上最富的平民。",
+      "二千六百萬銀元聽落天文，一折物價又會變得『只係』今日的億級，因為成個世界經濟細好多。同一港口後來捲入鴉片同戰爭。伍秉鑑係行商，要向官府負責，亦要同外商結帳。佢解釋唔到成場戰爭，但解釋到：全球貿易一接通，一個城市的商人可以富過好遠地方嘅貴族。",
+    ],
+    facts: [
+      "1769 年出世，1843 年過身。",
+      "同代估算大約二千六百萬銀元。",
+      "低估計係物價尺，中位先係經濟感覺尺。兩條差好遠。",
+    ],
+    flow: "行商家族的資本跟貿易同戰亂走。一部分後人同買辦網絡繼續做生意，光環唔再係『世界第一平民』。",
+    voice: "廣州有個商人，數得落手。我好想你停喺呢一站。",
+  },
+  {
+    id: "ford",
+    nameZh: "亨利·福特",
+    nameEn: "Henry Ford",
+    life: "1863–1947",
+    region: "美國",
+    how: "汽車同流水線",
+    scene: "/museum/ford.jpg",
+    focus: "50% 55%",
+    confidence: "records",
+    hold: { from: 1918, to: 1945 },
+    peakYear: 1925,
+    wealth: { low: 30, mid: 90, high: 180 },
+    method:
+      "1920 年代福特汽車令佢成為世界級工業富豪，名義身家十億美元量級。只計通脹會係幾百億今日美元以下；佔當時經濟嘅教學中位大約 900 億。有公司帳同報紙。",
+    blurb: "流水線令汽車變平。老闆就變成新一種巨富。",
+    story: [
+      "福特將汽車造成普通工人都有機會買的產品。流水線令每一架車的時間縮短，工廠變得巨大。1920 年代，好多人將佢同洛克菲勒放在同一句『最有錢』入面。",
+      "巨富唔等於工廠裡的人都滿意。佢提高過日薪，亦長期同工會衝突。呢格櫃放喺洛克菲勒同蓋蒂中間，係因為空白的二十年其實有一個好清楚的工業名字，唔使留白。",
+    ],
+    facts: [
+      "T 型車令汽車進入更多家庭。",
+      "高峰大約喺 1920 年代。",
+      "工廠好大，勞資衝突亦好大。",
+    ],
+    flow: "公司股權留喺家族同基金會。汽車生產的方法留喺全世界的工廠。",
+    voice: "流水線係一種賺法，亦係一種生活。兩樣都要講。",
   },
   {
     id: "tsutsumi",
@@ -632,33 +912,44 @@ export type Scene = {
   next: Tycoon | null;
 };
 
-export function sceneAt(year: number): Scene {
-  const ancient = TYCOONS.filter((t) => t.hold);
-  const prev = [...ancient].reverse().find((t) => t.hold!.to < year) ?? null;
-  const next = ancient.find((t) => t.hold!.from > year) ?? null;
-
-  if (year < 1066) {
-    return {
-      year,
-      id: null,
-      title: "序廳 · 仲未有個人榜",
-      detail:
-        "宋仁宗在位，開封係當時最繁華嘅城市之一。皇帝同國庫分不開，我哋寧願由 1066 年先開始數。",
-      value: null,
-      kind: "prologue",
-      prev: null,
-      next: ancient[0] ?? null,
-    };
+export function stationYears(): number[] {
+  const years = new Set<number>();
+  for (const person of TYCOONS) {
+    if (person.peakYear < 1987) years.add(person.peakYear);
   }
+  for (const row of FORBES) years.add(row.year);
+  return [...years].sort((a, b) => a - b);
+}
 
+export function snapYear(year: number): number {
+  const years = stationYears();
+  let best = years[0] ?? year;
+  let bestDist = Infinity;
+  for (const candidate of years) {
+    const dist = Math.abs(candidate - year);
+    if (dist < bestDist) {
+      best = candidate;
+      bestDist = dist;
+    }
+  }
+  return best;
+}
+
+function ancientDetail(person: Tycoon): string {
+  if (person.confidence === "records") return "有帳簿或清冊。圖上仍然係教學折算。中間冇展品嘅年份已經跳過。";
+  if (person.confidence === "legend") return "傳說多過清單。數字係教學估算，用嚟填一段原本空白嘅走廊。";
+  return "教學估算，用嚟填原本留白嘅年份。唔係該年銀行月結單。";
+}
+
+export function sceneAt(year: number): Scene {
   if (year >= 1987) {
-    const row = FORBES.find((r) => r.year === year) ?? FORBES[FORBES.length - 1];
-    const t = byId(row.id);
+    const row = FORBES.find((item) => item.year === year) ?? FORBES[FORBES.length - 1];
+    const person = byId(row.id);
     return {
-      year,
-      id: t.id,
-      title: t.nameZh,
-      detail: `${year} 年福布斯年度榜首，已折成 2026 年美元。榜係一張快相。`,
+      year: row.year,
+      id: person.id,
+      title: person.nameZh,
+      detail: `${row.year} 年福布斯年度榜首，已折成 2026 年美元。榜係一張快相。`,
       value: row.value,
       kind: "forbes",
       prev: null,
@@ -666,29 +957,22 @@ export function sceneAt(year: number): Scene {
     };
   }
 
-  const hit = ancient.find((t) => year >= t.hold!.from && year <= t.hold!.to);
-  if (hit?.wealth) {
-    return {
-      year,
-      id: hit.id,
-      title: hit.nameZh,
-      detail: "教學估算。呢個係佢呢段時期嘅代表數字，唔係該年銀行月結單。",
-      value: hit.wealth.mid,
-      kind: "estimate",
-      prev: null,
-      next: null,
-    };
-  }
-
+  const ancient = TYCOONS.filter((person) => person.wealth && person.peakYear < 1987);
+  const exact = ancient.find((person) => person.peakYear === year);
+  const hit =
+    exact ??
+    ancient.reduce((best, person) =>
+      Math.abs(person.peakYear - year) < Math.abs(best.peakYear - year) ? person : best,
+    );
   return {
-    year,
-    id: null,
-    title: "空白走廊",
-    detail: "呢段年份一定有好有錢嘅皇帝同商人。我哋搵唔到夠清楚嘅個人身家，所以留白，唔發明冠軍。",
-    value: null,
-    kind: "gap",
-    prev,
-    next,
+    year: hit.peakYear,
+    id: hit.id,
+    title: hit.nameZh,
+    detail: ancientDetail(hit),
+    value: hit.wealth!.mid,
+    kind: "estimate",
+    prev: null,
+    next: null,
   };
 }
 
@@ -721,7 +1005,7 @@ export function chartRows(revealThrough: number): ChartRow[] {
     name: byId(r.id).nameZh,
     kind: "forbes" as const,
   }));
-  return [...story, ...live];
+  return [...story, ...live].sort((a, b) => a.x - b.x || a.year - b.year);
 }
 
 export const QUIZ = [
@@ -765,13 +1049,26 @@ export const QUIZ = [
     answer: 0,
     why: "股份一日可以跳。萬億係一個短暫高位，唔係鎖死嘅存款。10 月榜上仍然係佢。",
   },
+  {
+    q: "同一個人，點解『2026 年美元』同『佔全球產出』兩張圖會排到唔同位置？",
+    choices: [
+      "因為兩把尺問嘅問題唔同：一份係物價，一份係當時經濟有幾大",
+      "因為古代美元每日都有報價",
+      "因為全球產出就係一個人嘅身家",
+      "因為福布斯唔計算美國人",
+    ],
+    answer: 0,
+    why: "物價尺會令舊錢睇落細。佔產出會令大帝國時代嘅人重新變高。兩張圖都要留低。",
+  },
 ] as const;
 
 export const JUMPS = [
-  { year: 1066, label: "1066 威廉" },
+  { year: 1030, label: "1030 朱羅" },
   { year: 1324, label: "1324 穆薩" },
   { year: 1525, label: "1525 富格爾" },
+  { year: 1834, label: "1834 伍秉鑑" },
   { year: 1913, label: "1913 洛克菲勒" },
-  { year: 2003, label: "2003 蓋茨" },
+  { year: 1999, label: "1999 蓋茨" },
+  { year: 2018, label: "2018 貝佐斯" },
   { year: 2026, label: "2026 馬斯克" },
 ] as const;

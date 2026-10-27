@@ -14,7 +14,7 @@ export const Route = createRootRoute({
       {
         name: "description",
         content:
-          "由 1026 年行到 2026 年，用博物館方式睇世界首富嘅故事、資產同財富流向。適合小學生同中學生。",
+          "由 1026 年行到 2026 年的富豪資料庫：起承轉合、全球產出占比、生活同財富去向。適合小學生同中學生。",
       },
       { name: "theme-color", content: "#1c1612" },
     ],

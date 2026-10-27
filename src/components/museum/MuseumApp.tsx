@@ -1,32 +1,28 @@
 import { useEffect, useMemo, useRef, useState, type ReactNode } from "react";
+import { Link } from "@tanstack/react-router";
+import { BookOpen, ChevronLeft, ChevronRight, Coins, Landmark, Pause, Play, Search } from "lucide-react";
 import {
-  BookOpen,
-  ChevronLeft,
-  ChevronRight,
-  Coins,
-  Landmark,
-  Pause,
-  Play,
-  Search,
-} from "lucide-react";
-import {
-  CONFIDENCE_LABEL,
   FORBES,
   JUMPS,
   MUSK_JUNE_2026_BILLIONS,
   QUIZ,
   TYCOONS,
+  CONFIDENCE_LABEL,
   byId,
   chartRows,
   forbesPeak,
-  forbesRows,
   formatUsdBillions,
   formatUsdShort,
   orderedTycoons,
   sceneAt,
+  snapYear,
+  stationYears,
   type Tycoon,
 } from "@/data/wealth";
-import { MiniLine, WealthChart } from "@/components/museum/WealthChart";
+import { WealthChart } from "@/components/museum/WealthChart";
+import { Shell } from "@/components/museum/Shell";
+import { PersonDossier } from "@/components/museum/PersonDossier";
+import { HALLS } from "@/components/museum/nav";
 
 const btn =
   "tap inline-flex min-h-11 items-center justify-center gap-2 rounded-full px-4 text-sm font-medium focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold";
@@ -38,6 +34,8 @@ export function MuseumApp() {
   const [playing, setPlaying] = useState(false);
   const [playYear, setPlayYear] = useState(2026);
   const galleryRef = useRef<HTMLDivElement>(null);
+  const stations = useMemo(() => stationYears(), []);
+  const stationIndex = Math.max(0, stations.indexOf(year));
   const scene = sceneAt(year);
   const selected = byId(selectedId);
 
@@ -78,12 +76,18 @@ export function MuseumApp() {
   }
 
   function goYear(next: number) {
-    const clamped = Math.min(2026, Math.max(1026, next));
+    const clamped = snapYear(next);
     setPlaying(false);
     setPlayYear(2026);
     setYear(clamped);
     const nextScene = sceneAt(clamped);
     if (nextScene.id) setSelectedId(nextScene.id);
+  }
+
+  function stepStation(direction: number) {
+    const index = Math.max(0, stations.indexOf(snapYear(year)));
+    const next = stations[Math.min(stations.length - 1, Math.max(0, index + direction))];
+    goYear(next);
   }
 
   function startPlay() {
@@ -115,20 +119,8 @@ export function MuseumApp() {
   }, [query]);
 
   return (
-    <main id="top" className="pb-24">
-      <header className="sticky top-0 z-30 border-b border-line bg-hall/90 backdrop-blur-md">
-        <div className="mx-auto flex max-w-6xl flex-wrap items-center gap-3 px-4 py-3">
-          <a href="#top" className="font-serif text-lg font-bold text-gold">
-            千年金庫
-          </a>
-          <nav className="flex flex-wrap gap-1 text-sm">
-            <NavLink href="#chart">流向圖</NavLink>
-            <NavLink href="#gallery">長廊</NavLink>
-            <NavLink href="#exhibit">展櫃</NavLink>
-            <NavLink href="#quiz">小測驗</NavLink>
-          </nav>
-        </div>
-      </header>
+    <Shell>
+    <main id="top">
 
       <section className="relative">
         <img
@@ -148,7 +140,7 @@ export function MuseumApp() {
                 <p className="text-sm font-medium text-cinnabar">1026–2026 · 兒童歷史館</p>
                 <h1 className="mt-1 text-4xl font-bold sm:text-5xl">千年金庫</h1>
                 <p className="mt-2 max-w-2xl text-base text-ink-soft">
-                  歡迎入嚟。我係阿燈。呢度每一格櫃，都係一段「當時最有錢」嘅故事。有啲有帳簿，有啲只係估算。我會話你知邊啲數信得過。
+                  歡迎入嚟。我係阿燈。空白年份會直接跳過。有帳簿的會寫明，估算補上的人亦會蓋印。想睇幾條人生點樣交叉，入「起承轉合」。
                 </p>
               </div>
             </div>
@@ -156,8 +148,11 @@ export function MuseumApp() {
             <div className="rise rise-2 mt-6 rounded-2xl bg-parchment-deep/70 p-4">
               <div className="flex flex-wrap items-end justify-between gap-3">
                 <div>
-                  <p className="text-sm text-ink-soft">時間轉盤</p>
+                  <p className="text-sm text-ink-soft">展站，空白年份已經跳過</p>
                   <p className="font-serif text-5xl font-bold text-cinnabar tabular-nums">{year}</p>
+                  <p className="text-sm text-ink-soft tabular-nums">
+                    第 {stationIndex + 1} / {stations.length} 站
+                  </p>
                 </div>
                 <div className="min-w-0 flex-1 sm:text-right">
                   <p className="font-serif text-2xl font-bold">{scene.title}</p>
@@ -171,16 +166,22 @@ export function MuseumApp() {
                 </div>
               </div>
               <label className="mt-4 block">
-                <span className="sr-only">揀年份，由 1026 到 2026</span>
+                <span className="sr-only">沿展站走，跳過冇人的年份</span>
                 <input
                   type="range"
-                  min={1026}
-                  max={2026}
-                  value={year}
-                  onChange={(event) => goYear(Number(event.target.value))}
+                  min={0}
+                  max={stations.length - 1}
+                  value={stationIndex}
+                  onChange={(event) => goYear(stations[Number(event.target.value)] ?? year)}
                 />
               </label>
               <div className="mt-3 flex flex-wrap gap-2">
+                <button type="button" className={`${btn} bg-parchment text-ink`} onClick={() => stepStation(-1)}>
+                  上一站
+                </button>
+                <button type="button" className={`${btn} bg-parchment text-ink`} onClick={() => stepStation(1)}>
+                  下一站
+                </button>
                 {JUMPS.map((jump) => (
                   <button
                     key={jump.year}
@@ -192,13 +193,6 @@ export function MuseumApp() {
                   </button>
                 ))}
               </div>
-              {scene.kind === "gap" && (scene.prev || scene.next) && (
-                <p className="mt-3 text-sm text-ink-soft">
-                  {scene.prev ? `上一個展櫃：${scene.prev.nameZh}（${scene.prev.hold?.to}）` : ""}
-                  {scene.prev && scene.next ? " · " : ""}
-                  {scene.next ? `下一個：${scene.next.nameZh}（${scene.next.hold?.from}）` : ""}
-                </p>
-              )}
               {scene.id && (
                 <button type="button" className={`${btn} mt-4 bg-cinnabar text-cream`} onClick={() => openPerson(scene.id!)}>
                   打開呢個展櫃
@@ -242,7 +236,11 @@ export function MuseumApp() {
           </div>
         </div>
         <p className="mt-3 max-w-3xl text-cream-dim">
-          左面虛線，係 1987 年之前每個時代嘅教學估算，方便睇流向，中間年份冇插值。右面實線先係福布斯每年榜首，已經折成 2026 年美元。直軸由零開始，單位係億美元。紅色虛線係 1 萬億。
+          左面虛線，係每個展站的教學估算，中間空白年份冇插值。右面實線先係福布斯每年榜首。想睇蓋茨點樣被貝佐斯越過、又點樣被馬斯克穿過，去
+          <Link to="/hall/$hall" params={{ hall: "lines" }} className="mx-1 text-gold underline">
+            起承轉合
+          </Link>
+          。
           {playYear < 2026 ? ` 而家播到 ${playYear} 年。` : ""}
         </p>
         <div className="mt-4 rounded-3xl border border-line bg-hall-raised p-3 sm:p-5">
@@ -293,6 +291,19 @@ export function MuseumApp() {
         </div>
       </section>
 
+      <section className="mx-auto mt-14 max-w-6xl px-4">
+        <p className="text-sm font-medium text-gold">十個展廳</p>
+        <h2 className="text-3xl font-bold">唔止一條走廊</h2>
+        <div className="mt-4 grid gap-3 sm:grid-cols-2">
+          {HALLS.map((hall) => (
+            <Link key={hall.slug} to="/hall/$hall" params={{ hall: hall.slug }} className="rounded-3xl border border-line bg-hall-raised p-4">
+              <h3 className="text-2xl font-bold text-gold">{hall.label}</h3>
+              <p className="mt-1 text-sm text-cream-dim">{hall.text}</p>
+            </Link>
+          ))}
+        </div>
+      </section>
+
       <section id="gallery" className="scroll-mt-24 mt-14">
         <div className="mx-auto flex max-w-6xl flex-wrap items-end justify-between gap-3 px-4">
           <div>
@@ -327,29 +338,12 @@ export function MuseumApp() {
           >
             <ChevronRight className="size-5" />
           </button>
-          <p className="text-sm text-cream-dim">由左至右，由 1066 行到今日</p>
+          <p className="text-sm text-cream-dim">由左至右只停有展品的年份</p>
         </div>
         <div
           ref={galleryRef}
           className="mt-4 flex gap-4 overflow-x-auto px-4 pb-4 snap-x snap-mandatory"
         >
-          <article className="w-72 shrink-0 snap-start overflow-hidden rounded-3xl bg-parchment text-ink">
-            <img
-              src="/museum/hall.jpg"
-              alt=""
-              className="h-36 w-full object-cover object-center"
-            />
-            <div className="p-4">
-              <p className="text-sm font-medium text-cinnabar">1026 · 序廳</p>
-              <h3 className="mt-1 text-xl font-bold">宋仁宗嘅世界</h3>
-              <p className="mt-2 text-sm text-ink-soft">
-                開封人多舖多，但皇帝袋入面嘅錢同國家嘅錢分不開。第一個用數字上台嘅人，等到 1066 年。
-              </p>
-              <button type="button" className={`${btn} mt-4 bg-gold text-ink`} onClick={() => goYear(1026)}>
-                轉盤去 1026
-              </button>
-            </div>
-          </article>
           {list.map((person) => (
             <PersonCard
               key={person.id}
@@ -365,7 +359,7 @@ export function MuseumApp() {
       </section>
 
       <section id="exhibit" className="scroll-mt-24 mx-auto mt-6 max-w-6xl px-4">
-        <Exhibit person={selected} />
+        <PersonDossier person={selected} />
       </section>
 
       <Quiz />
@@ -376,22 +370,12 @@ export function MuseumApp() {
           1987 至 2026 年：Forbes 全球富豪榜年度第一，金額由 Visual Capitalist 於 2026 年用美國 CPI 折成 2026 年美元。2026 年係 9 月即時估算，唔係年結。6 月短暫高位約 1.45 萬億美元，來自同一組報道。
         </p>
         <p className="mt-2">
-          1987 年之前：教學估算，用嚟比較「當時有幾勁」。威廉有《末日審判書》；富格爾有帳簿同史家研究；洛克菲勒 1913 年名義資產約 9 億美元，再按佔經濟比例折算。曼薩·穆薩常見講法約 4,000 億美元，另有高好多嘅猜測。成吉思汗如果將成個帝國當成私產，數字會失控，呢度冇咁計。空白走廊係故意留低嘅。
+          1987 年之前：教學估算。新補上的人（朱羅海貿、忽必烈、沈萬三、美第奇、伍秉鑑、福特等）都蓋咗估算或傳說印。威廉有《末日審判書》；富格爾同伍秉鑑有同代記載。全球占比用名義身家除以當年全球產出；古代國力另計，唔當私人存款。空白年份跳過，唔再鋪空走廊。
         </p>
-        <p className="mt-2">壁畫係氣氛，唔係肖像。阿燈係虛構導賞。</p>
+        <p className="mt-2">壁畫係氣氛，唔係肖像。阿燈係虛構導賞。現代軌跡在榜首年份對齊福布斯，其餘年份係圓整連線。</p>
       </footer>
     </main>
-  );
-}
-
-function NavLink({ href, children }: { href: string; children: string }) {
-  return (
-    <a
-      href={href}
-      className="inline-flex min-h-11 items-center rounded-full px-3 text-cream-dim hover:text-cream"
-    >
-      {children}
-    </a>
+    </Shell>
   );
 }
 
@@ -444,105 +428,6 @@ function PersonCard({
         <p className="mt-3 font-bold tabular-nums">{formatUsdBillions(value)}</p>
       </div>
     </button>
-  );
-}
-
-function Exhibit({ person }: { person: Tycoon }) {
-  const rows = forbesRows(person.id);
-  const peak = rows.length ? forbesPeak(person.id) : null;
-  return (
-    <article className="overflow-hidden rounded-3xl bg-parchment text-ink">
-      <img
-        src={person.scene}
-        alt={`${person.nameZh}展區壁畫，描寫${person.how}嘅時代氣氛，唔係肖像`}
-        style={{ objectPosition: person.focus }}
-        className="h-56 w-full object-cover sm:h-80"
-      />
-      <div className="grid gap-6 p-5 sm:p-8 lg:grid-cols-[1.3fr_0.7fr]">
-        <div>
-          <p className="text-sm font-medium text-cinnabar">
-            {CONFIDENCE_LABEL[person.confidence]} · {person.region}
-          </p>
-          <h2 className="mt-1 text-4xl font-bold">{person.nameZh}</h2>
-          <p className="text-ink-soft">
-            {person.nameEn} · {person.life}
-          </p>
-          <p className="mt-2 text-sm font-medium">點樣有錢：{person.how}</p>
-          {person.story.map((para) => (
-            <p key={para.slice(0, 12)} className="mt-3">
-              {para}
-            </p>
-          ))}
-          <blockquote className="mt-4 border-l-4 border-gold pl-4 text-ink-soft">阿燈：{person.voice}</blockquote>
-        </div>
-        <div className="rounded-2xl bg-parchment-deep/80 p-4">
-          <h3 className="text-lg font-bold">資產</h3>
-          {person.wealth ? (
-            <AncientWealth low={person.wealth.low} mid={person.wealth.mid} high={person.wealth.high} />
-          ) : peak ? (
-            <div>
-              <p className="mt-2 font-serif text-3xl font-bold text-cinnabar tabular-nums">
-                {formatUsdBillions(peak.value)}
-              </p>
-              <p className="text-sm text-ink-soft tabular-nums">
-                {peak.year} 年高峰 · {formatUsdShort(peak.value)}
-              </p>
-              {rows.length > 1 && (
-                <p className="mt-2 text-sm text-ink-soft">
-                  坐榜首嗰幾年，由 {formatUsdBillions(Math.min(...rows.map((r) => r.value)))} 到{" "}
-                  {formatUsdBillions(Math.max(...rows.map((r) => r.value)))}。下面係佢自己嘅小折線。
-                </p>
-              )}
-              <MiniLine rows={rows.map((row) => ({ year: row.year, value: row.value }))} />
-            </div>
-          ) : null}
-          <p className="mt-3 text-sm text-ink-soft">{person.method}</p>
-          <h3 className="mt-5 text-lg font-bold">錢去咗邊</h3>
-          <p className="mt-1 text-sm">{person.flow}</p>
-        </div>
-      </div>
-      <ul className="grid gap-3 px-5 pb-6 sm:grid-cols-3 sm:px-8">
-        {person.facts.map((fact) => (
-          <li key={fact.slice(0, 16)} className="rounded-2xl bg-hall px-4 py-3 text-sm text-cream">
-            {fact}
-          </li>
-        ))}
-      </ul>
-    </article>
-  );
-}
-
-function AncientWealth({ low, mid, high }: { low: number; mid: number; high: number }) {
-  const left = (low / high) * 100;
-  const mark = (mid / high) * 100;
-  return (
-    <div className="mt-2">
-      <div className="grid grid-cols-3 gap-2 text-center">
-        <WealthBit label="低估計" value={low} />
-        <WealthBit label="圖上用" value={mid} strong />
-        <WealthBit label="高估計" value={high} />
-      </div>
-      <div className="relative mt-4 h-3 rounded-full bg-parchment">
-        <div
-          className="absolute inset-y-0 rounded-full bg-gold"
-          style={{ left: `${left}%`, right: 0 }}
-        />
-        <div
-          className="absolute top-1/2 size-4 -translate-x-1/2 -translate-y-1/2 rounded-full border-2 border-parchment bg-cinnabar"
-          style={{ left: `${mark}%` }}
-        />
-      </div>
-      <p className="mt-2 text-xs text-ink-soft">金條由低估計拉到高估計，紅點係圖上採用嘅數字。</p>
-    </div>
-  );
-}
-
-function WealthBit({ label, value, strong }: { label: string; value: number; strong?: boolean }) {
-  return (
-    <div>
-      <p className="text-xs text-ink-soft">{label}</p>
-      <p className={`font-bold tabular-nums ${strong ? "text-cinnabar" : ""}`}>{formatUsdBillions(value)}</p>
-    </div>
   );
 }
 
