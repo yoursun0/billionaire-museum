@@ -11,3 +11,4 @@ dist/
 AGENTS.md
 AGENTS.project.md
 .node_modules.lock
+.project_id
